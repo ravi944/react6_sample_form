@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Beautiful Form</title>
+	<style>
+		.form-container {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			margin-right: 40px;
+			padding: 150px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+			background-color: #fff;
+			font-family: Arial, sans-serif;
+			font-size: 16px;
+			color: #333;
+		}
+
+		.form-container form {
+            display: inline-block;
+            margin-right: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+		.form-container label {
+			font-size: 18px;
+            color: #555;
+            display: block;
+            margin-bottom: 10px;
+		}
+
+		.form-container input[type="text"],
+		.form-container input[type="email"] {
+			display: block;
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			background-color: #f8f8f8;
+			font-family: Arial, sans-serif;
+			font-size: 16px;
+			color: #333;
+			box-sizing: border-box;
+		}
+
+		.form-container input[type="button"],
+		.form-container button {
+			display: inline-block;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			background-color: #333;
+			color: #fff;
+			font-family: Arial, sans-serif;
+			font-size: 16px;
+			cursor: pointer;
+		}
+
+		.form-container input[type="button"]:hover,
+		.form-container button:hover {
+			background-color: #555;
+		}
+
+		.form-container input[type="button"]:active,
+		.form-container button:active {
+			background-color: #222;
+		}
+	</style>
+</head>
+<body>
+	<div class="form-container">
+		<form action="/submit" method="post">
+			<label for="id">Person Id:</label>
+			<input type="text" id="id" name="id" required>
+			<label for="name">Name:</label>
+			<input type="text" id="name" name="name" required>
+            <button class="button" type="submit">Submit</button>
+		</form>
+		<form>
+			<label for="searchEmail">Search Email:</label>
+			<input type="email" id="searchEmail" name="searchEmail" required>
+			<input type="button" onclick="searchByEmail()" value="Search">
+		</form>
+		<button onclick="showAll()">Show All</button>
+	</div>
+</body>
+</html>

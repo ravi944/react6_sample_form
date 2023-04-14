@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Beautiful Form</title>
+    <style>
+      .button {
+        position: relative;
+        transition: left 0.2s ease-in-out;
+      }
+      .button:hover {
+        cursor: pointer;
+      }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const submitBtn = document.querySelector('.button');
+        const formFields = document.querySelectorAll('input[required]');
+        const form = document.querySelector('form');
+
+        submitBtn.addEventListener('mousemove', function(event) {
+          const isFormValid = Array.from(formFields).every(function(field) {
+            return field.checkValidity();
+          });
+
+          if (!isFormValid) {
+            const buttonRect = submitBtn.getBoundingClientRect();
+            const cursorX = event.clientX;
+            const windowWidth = window.innerWidth;
+            const padding = 10; // adjust this value to change the amount of padding
+            const newX = cursorX <= windowWidth / 2 ? cursorX + padding : cursorX - buttonRect.width - padding;
+            submitBtn.style.left = `${newX}px`;
+          }
+        });
+
+        submitBtn.addEventListener('mouseleave', function() {
+          submitBtn.style.left = '';
+        });
+
+        form.addEventListener('submit', function(event) {
+          const isFormValid = Array.from(formFields).every(function(field) {
+            return field.checkValidity();
+          });
+
+          if (!isFormValid) {
+            submitBtn.style.display = 'none';
+            event.preventDefault();
+          }
+        });
+
+        submitBtn.addEventListener('mouseenter', function() {
+          submitBtn.style.display = '';
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Winner Design Form</h1>
+    <div class="form-container">
+      <form action="/submit" method="post">
+        <label class="label" for="phone">Phone:</label>
+        <input class="input" type="text" id="phone" name="phone" required>
+        <label class="label" for="location">Location:</label>
+        <input class="input" type="text" id="location" name="location" required><br><br>
+        <input class="button" type="submit">
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Beautiful Form</title>
+    <style>
+      /* form styles */
+      /* form styles */
+      form {
+        margin: 50px auto;
+        width: 400px;
+        font-family: Arial, sans-serif;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        padding: 20px;
+        background-color: #f5f5f5;
+        
+      }
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+      /* form container styles */
+      .form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin-right: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <form action="/submit" method="post">
+        <label class="label" for="name">Person Id:</label>
+        <input class="input" type="text" id="id" name="id" required>
+        <label class="label" for="name">Name:</label>
+        <input class="input" type="text" id="name" name="name" required>
+        <label class="label" for="email">Email:</label>
+        <input class="input" type="email" id="email" name="email" required><br><br>
+        <input class="button" type="submit">
+      </form>
+      <button onclick="showAll()">Show All</button>
+      <table id="table"></table>
+    </div>
+    <script>
+      function showAll() {
+        fetch('/show')
+          .then(response => response.json())
+          .then(data => {
+            const table = document.getElementById('table');
+            table.innerHTML = `
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+              </tr>
+              `;
+              data.forEach(row => {
+                table.innerHTML += `
+                  <tr>
+                  <td>${row.id}</td>
+                  <td>${row.name}</td>
+                  <td>${row.email}</td>
+                </tr>
+                `;
+              });
+            })
+            .catch(error => console.error(error));
+        }
+      </script>
+      </div>
+    </body>
+  </html>
+
+   

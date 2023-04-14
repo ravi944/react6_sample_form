@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Beautiful Form</title>
+    <style>
+  /* form styles */
+form {
+    margin: 50px auto;
+    width: 400px;
+    font-family: Arial, sans-serif;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #f5f5f5;
+  }
+  
+  /* Add this rule to move the button away from the cursor on invalid form submission */
+  form:invalid .button {
+    transform: translateX(-20px);
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    outline: none;
+  }
+  
+  textarea {
+    height: 120px;
+  }
+  
+  input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
+  /* Add this rule to change the button background color on invalid form submission */
+  form:invalid .button {
+    background-color: #ccc;
+  }
+  
+  /* form container styles */
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* page styles */
+  body {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 36px;
+    font-weight: bold;
+  }
+  
+  h1:hover {
+    color: #4CAF50;
+  }
+  
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  textarea:focus {
+    background-color: wheat;
+  }
+  
+  /* Add this rule to position the button */
+  .button {
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+  }
+  form:invalid .button {
+    transform: translateX(-20px);
+  }
+  form:invalid .button {
+    background-color: #ccc;
+    transform: translateX(-20px);
+  }
+    
+    </style>
+</head>
+<body>
+  <h1>Winner Design Form</h1>
+  <div class="form-container">
+    <form action="/submit" method="post">
+      <label class="label" for="name">Person Id:</label>
+      <input class="input" type="text" id="id" name="id" required>
+      <label class="label" for="name">Name:</label>
+      <input class="input" type="text" id="name" name="name" required>
+      <input class="button" type="submit">
+    </form>
+
+</body>
+</html>
