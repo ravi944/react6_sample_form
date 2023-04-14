@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Table</title>
+    <style>
+      table {
+        margin-top: 20px;
+        border-collapse: collapse;
+        width: 50%;
+      }
+      th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #4CAF50;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <table id="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Location</th>
+      </tr>
+    </table>
+
+    <script>
+      function displayData(data) {
+        const table = document.getElementById('table');
+        table.innerHTML = `
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Location</th>
+          </tr>
+        `;
+        data.forEach(row => {
+          table.innerHTML += `
+            <tr>
+              <td>${row.id}</td>
+              <td>${row.name}</td>
+              <td>${row.email}</td>
+              <td>${row.phone}</td>
+              <td>${row.location}</td>
+            </tr>
+          `;
+        });
+      }
+
+      const tableHTML = sessionStorage.getItem('tableHTML');
+      if (tableHTML) {
+        const table = document.getElementById('table');
+        table.outerHTML = tableHTML;
+      } else {
+        fetch('/show')
+          .then(response => response.json())
+          .then(data => {
+            displayData(data);
+            const tableHTML = table.outerHTML;
+            sessionStorage.setItem('tableHTML', tableHTML);
+          })
+          .catch(error => console.error(error));
+      }
+    </script>
+  </body>
+</html>
